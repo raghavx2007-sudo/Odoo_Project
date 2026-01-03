@@ -3,25 +3,23 @@ import { useNavigate } from "react-router-dom";
 import api from "../api/api";
 
 function Signup() {
+  const navigate = useNavigate();
+
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const navigate = useNavigate();
 
   const handleSignup = async () => {
     try {
-      const res = await api.post("/auth/signup", {
+      await api.post("/auth/signup", {
         name,
         email,
-        password
+        password,
       });
-
-      alert(res.data.message);
-
-      // redirect to login or dashboard
+      alert("Signup successful");
       navigate("/login");
-    } catch (err) {
-      alert(err.response?.data?.message || "Signup failed");
+    } catch (error) {
+      alert(`Signup failed ${error}`);
     }
   };
 
@@ -29,12 +27,23 @@ function Signup() {
     <div className="auth-container">
       <h2>Signup</h2>
 
-      <input value={name} onChange={e => setName(e.target.value)} />
-      <input value={email} onChange={e => setEmail(e.target.value)} />
+      <input
+        placeholder="Name"
+        value={name}
+        onChange={(e) => setName(e.target.value)}
+      />
+
+      <input
+        placeholder="Email"
+        value={email}
+        onChange={(e) => setEmail(e.target.value)}
+      />
+
       <input
         type="password"
+        placeholder="Password"
         value={password}
-        onChange={e => setPassword(e.target.value)}
+        onChange={(e) => setPassword(e.target.value)}
       />
 
       <button onClick={handleSignup}>Signup</button>

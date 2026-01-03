@@ -1,115 +1,60 @@
+/* ===== GLOBAL RESET ===== */
 * {
-  margin: 0;
-  padding: 0;
   box-sizing: border-box;
-  font-family: Arial, Helvetica, sans-serif;
 }
 
 body {
-  background-color: #f4f6f8;
+  font-family: Arial, sans-serif;
+  margin: 0;
+  overflow-x: hidden;
 }
 
+/* ===== PAGE ===== */
 .page {
-  padding: 24px;
-}
-
-button {
-  cursor: pointer;
-}
-.fade-in {
-  animation: fadeIn 0.6s ease-in-out;
-}
-
-.slide-up {
-  animation: slideUp 0.5s ease-out;
+  padding: 20px;
+  animation: fadeIn 0.3s ease-in;
 }
 
 @keyframes fadeIn {
   from {
     opacity: 0;
+    transform: translateY(6px);
   }
   to {
     opacity: 1;
-  }
-}
-
-@keyframes slideUp {
-  from {
-    transform: translateY(15px);
-    opacity: 0;
-  }
-  to {
     transform: translateY(0);
-    opacity: 1;
   }
 }
-button {
-  transition: all 0.2s ease;
-}
 
-button:hover {
-  transform: scale(1.05);
-  opacity: 0.9;
-}
-
-button:active {
-  transform: scale(0.97);
-}
-
-.auth-container {
-  width: 350px;
-  margin: 80px auto;
-  background: white;
-  padding: 24px;
-  border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.1);
-}
-
-.auth-container h2 {
-  text-align: center;
-  margin-bottom: 20px;
-}
-
-.auth-container input {
-  width: 100%;
-  padding: 10px;
-  margin-bottom: 14px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-}
-
-.auth-container button {
-  width: 100%;
-  padding: 10px;
-  background: #1e90ff;
-  border: none;
-  color: white;
-  border-radius: 4px;
-}
-
+/* ===== NAVBAR (SINGLE SOURCE OF TRUTH) ===== */
 .navbar {
+  width: 100%;
+  background: #2196f3;
+  color: white;
+  padding: 12px 20px;
+
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 12px 24px;
-  background-color: #1e90ff;
 }
 
 .logo {
+  margin: 0;
   color: white;
-  font-size: 20px;
 }
 
 .navbar-right {
   display: flex;
   gap: 16px;
   align-items: center;
+  flex-wrap: wrap;
 }
 
 .navbar a {
   color: white;
   text-decoration: none;
   font-weight: 500;
+  white-space: nowrap;
 }
 
 .navbar a:hover {
@@ -117,57 +62,209 @@ button:active {
 }
 
 .logout-btn {
-  background: #ff4d4d;
-  color: white;
+  background: #ff5252;
   border: none;
-  padding: 6px 12px;
+  color: white;
+  padding: 6px 10px;
   border-radius: 4px;
+  cursor: pointer;
 }
 
+.logout-btn:hover {
+  background: #e60000;
+}
+
+/* ===== AUTH (LOGIN / SIGNUP) ===== */
 .auth-container {
-  width: 350px;
-  margin: 80px auto;
-  background: white;
-  padding: 24px;
-  border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  width: 300px;
+  margin: 50px auto;
+  display: flex;
+  flex-direction: column;
 }
 
-.auth-container h2 {
-  text-align: center;
-  margin-bottom: 20px;
+.auth-container input,
+textarea {
+  margin: 8px 0;
+  padding: 8px;
 }
 
-.auth-container input {
-  width: 100%;
-  padding: 10px;
-  margin-bottom: 14px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
+button {
+  padding: 8px;
+  margin-top: 10px;
+  cursor: pointer;
 }
 
-.auth-container button {
-  width: 100%;
-  padding: 10px;
-  background: #1e90ff;
-  border: none;
-  color: white;
-  border-radius: 4px;
+/* ===== TRIP GRID ===== */
+.trip-grid {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
 }
+
+/* ===== TRIP CARD ===== */
 .trip-card {
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  width: 260px;
+  padding: 14px;
+  background: #fff;
 }
 
-.trip-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 6px 14px rgba(0,0,0,0.15);
-}
 .trip-image {
   width: 100%;
-  height: 160px;
+  height: 140px;
   object-fit: cover;
+  border-radius: 4px;
+}
+
+.trip-dates {
+  color: #666;
+  font-size: 14px;
+}
+
+.trip-info {
+  margin: 8px 0;
+  font-weight: bold;
+}
+
+/* ===== TRIP ACTIONS ===== */
+.trip-actions {
+  display: flex;
+  gap: 6px;
+  margin-top: 8px;
+}
+
+.trip-actions button {
+  flex: 1;
+  padding: 6px;
+  border: none;
+  border-radius: 4px;
+}
+
+.trip-actions button:hover {
+  opacity: 0.9;
+}
+
+.trip-actions .danger {
+  background: #f44336;
+  color: white;
+}
+
+/* ===== PROGRESS BAR ===== */
+.progress-bar {
+  height: 6px;
+  background: #ddd;
+  margin: 8px 0;
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  width: 70%;
+  background: #4caf50;
+}
+
+/* ===== GLOBAL TRANSITION (SMOOTHNESS) ===== */
+button,
+.trip-card,
+.navbar a,
+.logout-btn {
+  transition: all 0.25s ease;
+}
+
+/* ===== BUTTON HOVER ===== */
+button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  opacity: 0.95;
+}
+
+/* Danger button hover */
+.danger:hover,
+.logout-btn:hover {
+  background-color: #d32f2f;
+}
+
+/* ===== TRIP CARD HOVER ===== */
+.trip-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.18);
+  border-color: #2196f3;
+}
+
+/* ===== NAVBAR LINK HOVER ===== */
+.navbar a:hover {
+  text-decoration: underline;
+  opacity: 0.9;
+}
+
+/* ===== NAVBAR CONTAINER HOVER (SUBTLE) ===== */
+.navbar:hover {
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+}
+
+/* ===== CREATE TRIP PAGE ===== */
+.page h2 {
+  font-size: 26px;
+  margin-bottom: 16px;
+  color: #1e3a8a;
+}
+
+.page h3 {
+  margin-top: 24px;
+  margin-bottom: 12px;
+  color: #2563eb;
+}
+
+/* ===== INPUT FIELDS ===== */
+.page input {
+  width: 100%;
+  max-width: 320px;
+  padding: 10px;
+  margin: 6px 0;
+  border: 1px solid #cbd5e1;
   border-radius: 6px;
+  font-size: 14px;
+}
+
+/* Input focus */
+.page input:focus {
+  outline: none;
+  border-color: #2196f3;
+  box-shadow: 0 0 0 2px rgba(33, 150, 243, 0.2);
+}
+
+/* ===== ITINERARY ROW ===== */
+.page > div > div {
   margin-bottom: 10px;
 }
 
+/* ===== BUTTONS (CREATE TRIP PAGE) ===== */
+.page button {
+  background: #2196f3;
+  color: white;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 6px;
+  font-size: 14px;
+  cursor: pointer;
+}
 
+/* Add Stop button spacing */
+.page button:first-of-type {
+  margin-top: 10px;
+}
+
+/* Create Trip button */
+.page button:last-of-type {
+  background: #16a34a;
+  margin-top: 14px;
+}
+
+/* ===== BUTTON HOVER ===== */
+.page button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  opacity: 0.95;
+}

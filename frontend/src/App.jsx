@@ -9,6 +9,7 @@ import Budget from "./pages/Budget";
 import Navbar from "./components/Navbar";
 import ViewTrip from "./pages/ViewTrip";
 import EditTrip from "./pages/EditTrip";
+
 import "./index.css"; 
 
 function App() {
@@ -17,7 +18,7 @@ function App() {
       <Navbar />
       <Routes>
         <Route path="/login" element={<Login />} />
-        <Route path="/" element={<Signup />} />
+        <Route path="/signup" element={<Signup />} />
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/create-trip" element={<CreateTrip />} />
         <Route path="/my-trips" element={<MyTrips />} />
@@ -26,6 +27,7 @@ function App() {
         <Route path="/itinerary" element={<ItineraryBuilder />} />
         <Route path="/budget" element={<Budget />} />
       </Routes>
+
     </BrowserRouter>
   );
 }

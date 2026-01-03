@@ -1,39 +1,30 @@
 import { useNavigate } from "react-router-dom";
 import api from "../api/api";
 
-function TripCard({ trip, refreshTrips }) {
+function TripCard({ trip }) {
   const navigate = useNavigate();
 
-  const handleDelete = async () => {
-    if (!window.confirm("Delete this trip?")) return;
-
-    try {
-      await api.delete(`/trips/${trip._id}`);
-      alert("Trip deleted");
-      refreshTrips(); 
-    } catch (error) {
-      alert(`Delete failed ${error}`);
-    }
+  const deleteTrip = async () => {
+    if (!window.confirm("Delete trip?")) return;
+    await api.delete(`/trips/${trip._id}`);
+    window.location.reload();
   };
 
   return (
     <div className="trip-card">
-      <h3>{trip.name}</h3>
+      <h4>{trip.name}</h4>
       <p>{trip.startDate?.slice(0,10)} → {trip.endDate?.slice(0,10)}</p>
-      <p>Budget: ₹{trip.budget || 0}</p>
+      <p>Budget: ₹{trip.budget}</p>
+
+      {/* progress bar */}
+      <div className="progress-bar">
+        <div className="progress-fill"></div>
+      </div>
 
       <div className="trip-actions">
-        <button onClick={() => navigate(`/trip/${trip._id}`)}>
-          View
-        </button>
-
-        <button onClick={() => navigate(`/edit-trip/${trip._id}`)}>
-          Edit
-        </button>
-
-        <button className="danger" onClick={handleDelete}>
-          Delete
-        </button>
+        <button onClick={() => navigate(`/trip/${trip._id}`)}>View</button>
+        <button onClick={() => navigate(`/edit-trip/${trip._id}`)}>Edit</button>
+        <button className="danger" onClick={deleteTrip}>Delete</button>
       </div>
     </div>
   );
