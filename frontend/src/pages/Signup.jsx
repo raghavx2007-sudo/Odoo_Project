@@ -16,7 +16,6 @@ function Signup() {
         email,
         password,
       });
-      alert("Signup successful");
       navigate("/login");
     } catch (error) {
       alert(`Signup failed ${error}`);

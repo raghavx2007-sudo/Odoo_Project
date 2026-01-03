@@ -43,7 +43,6 @@ function CreateTrip() {
         itinerary: stops
       });
 
-      alert("Trip created successfully");
       navigate("/my-trips");
     } catch (error) {
       alert("Failed to create trip");

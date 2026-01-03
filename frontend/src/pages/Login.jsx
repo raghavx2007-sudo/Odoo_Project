@@ -17,8 +17,6 @@ function Login() {
       // save login info
       localStorage.setItem("user", JSON.stringify(res.data.user));
 
-      alert(res.data.message);
-
       // redirect to dashboard
       navigate("/dashboard");
     } catch (err) {
